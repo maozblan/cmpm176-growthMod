@@ -1,3 +1,7 @@
+# cmpm176-growthMod
+this is a class project, modification on the game Growth from crisp-game-lib; original source code [https://github.com/abagames/crisp-game-lib-11-games/blob/main/docs/growth/main.js]
+
+# below is the original crisp-game-lib README.md
 <a href="https://abagames.github.io/crisp-game-lib-11-games/?pakupaku"><img src="https://github.com/abagames/crisp-game-lib-11-games/raw/main/docs/pakupaku/screenshot.gif" width="25%" loading="lazy"></a><a href="https://abagames.github.io/crisp-game-lib-11-games/?timbertest"><img src="https://github.com/abagames/crisp-game-lib-11-games/raw/main/docs/timbertest/screenshot.gif" width="25%" loading="lazy"></a><a href="https://abagames.github.io/crisp-game-lib-11-games/?meteoplanet"><img src="https://github.com/abagames/crisp-game-lib-11-games/raw/main/docs/meteoplanet/screenshot.gif" width="25%" loading="lazy"></a><a href="https://abagames.github.io/crisp-game-lib-11-games/?up1way"><img src="https://github.com/abagames/crisp-game-lib-11-games/raw/main/docs/up1way/screenshot.gif" width="25%" loading="lazy"></a>
 
 # crisp-game-lib
