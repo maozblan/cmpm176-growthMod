@@ -1,4 +1,4 @@
-let debugMode = true;
+let debugMode = false;
 
 title = "GROWTH";
 
@@ -20,6 +20,8 @@ options = {
 let player;
 /** {{x: number, size: number}[]} */
 let enemies;
+let laser;  // ADDING LASER THING
+const d12 = () => Math.ceil(Math.random() * 12);
 let nextEnemyDist;
 const floorY = 60;
 
@@ -29,6 +31,12 @@ function update() {
     player = { x: 9, vx: 1, size: 5 };
     enemies = [];
     nextEnemyDist = 0;
+    laser = {
+      height: laserHeight(),
+      counter: 0,
+      flickerCounter: 0,
+      colliding: false,
+    }
   }
   let scr = player.x > 9 ? (player.x - 9) * 0.5 : 0; // screen scroll speed
   // debug('scr', scr);
@@ -65,8 +73,40 @@ function update() {
     }
     enemies.push({ x: 400, size });
     // spawn new enemy every 30-50 pixels, varies on size
-    // nextEnemyDist += rnd(30, 50);
-    nextEnemyDist += 500;
+    nextEnemyDist += rnd(30, 50);
+  }
+
+  // laser flicker
+  // counting flickers
+  if (laser.counter > 60 && laser.counter % 60 === 0) {
+    laser.flickerCounter += 1;
+  }
+  laser.counter += 1;
+  
+  // don't mind the magic numbers ty :')
+  if (laser.flickerCounter > 3) {
+    color("red");
+    const c = rect(0, laser.height, 200, 2).isColliding.rect;
+    if (c.yellow) {
+      play("explosion");
+      end();
+    }
+  } else if (laser.counter < 60 || laser.counter % 60 < 30) {  // flicker
+    color("cyan");
+    const c = rect(0, laser.height, 200, 2).isColliding.rect;
+    if (c.yellow && !laser.colliding) {  // +150 points for collision, only once
+      laser.colliding = true;
+      play("coin");
+      addScore(150, player.vx+player.size, laser.height);
+    }
+  }
+  
+  // next laser
+  if (laser.flickerCounter > 4) {
+    laser.flickerCounter = 0;
+    laser.counter = 0;
+    laser.colliding = false;
+    laser.height = laserHeight();
   }
 
   // seemingly called every tick
@@ -96,6 +136,15 @@ function update() {
       return true;
     }
   });
+
+  function laserHeight() {
+    let height = 0;
+    for (let i = 0; i < 4; ++i) {  // 4d12 anydice.com
+      height += d12();
+      debug('y', height);
+    }
+    return height;
+  }
 }
 
 function debug(...text) {
