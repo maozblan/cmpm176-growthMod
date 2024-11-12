@@ -24,19 +24,22 @@ let nextEnemyDist;
 const floorY = 60;
 
 function update() {
-  if (!ticks) { // initalize the game start state
+  // initalize the game start state
+  if (!ticks) {
     player = { x: 9, vx: 1, size: 5 };
     enemies = [];
     nextEnemyDist = 0;
   }
-  let scr = player.x > 9 ? (player.x - 9) * 0.5 : 0; // screen scroll speed?
-  debug('scr', scr);
+  let scr = player.x > 9 ? (player.x - 9) * 0.5 : 0; // screen scroll speed
+  // debug('scr', scr);
 
   color("light_blue");
   rect(0, floorY, 200, 10);
   if (input.isJustPressed) {
     play("laser");
   }
+
+  // player growth
   player.size +=
     ((input.isPressed ? 50 : 5) - player.size) *
     clamp(player.vx, 1, 999) *
@@ -46,24 +49,37 @@ function update() {
   if (player.x + player.size / 2 < 1) {
     end();
   }
+
+  // draw player
   color("yellow");
   rect(0, floorY, player.x + player.size / 2, -player.size);
-  nextEnemyDist -= scr;
+
+  nextEnemyDist -= scr;  // rightmost enemy distance away from right of screen
   if (nextEnemyDist < 0) {
+    debug("new enemy");
+    // enemy size
     let size = rnd() < 0.8 ? 3 : rnd(5) * rnd(5) + 3;
+
     if (size < 7) {
       size = 3;
     }
     enemies.push({ x: 400, size });
-    nextEnemyDist += rnd(30, 50);
+    // spawn new enemy every 30-50 pixels, varies on size
+    // nextEnemyDist += rnd(30, 50);
+    nextEnemyDist += 500;
   }
+
+  // seemingly called every tick
   remove(enemies, (e) => {
+    debug('remove');
     e.x -= scr;
     color(e.size > player.size ? "red" : "cyan");
     const sc = e.x > 100 ? (e.x - 100) / 300 + 1 : 1;
     const sz = e.size / sc;
     const c = rect(e.x / sc, floorY, sz, -sz).isColliding.rect;
     if (c.yellow) {
+      // if collision with player
+      debug('c is yellow');
       if (e.size > player.size) {
         play("explosion");
         end();
