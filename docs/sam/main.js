@@ -59,14 +59,17 @@ function update() {
   }
 
   // draw player
-  color("red");
+  color("yellow");
   rect(0, floorY, player.x + player.size / 2, -player.size);
 
   nextEnemyDist -= scr;  // rightmost enemy distance away from right of screen
   if (nextEnemyDist < 0) {
     debug("new enemy");
     // enemy size
-    let size = rnd() < 0.8 ? 3 : rnd(5) * rnd(5) + 3;
+    if (laser.counter > 20){
+
+    }
+    let size = rnd() < 0.8 ? 3 : rnd(5-(laser.height * 0.05)) * rnd(5-(laser.height * 0.05)) + 3;
 
     if (size < 7) {
       size = 3;
@@ -78,7 +81,7 @@ function update() {
 
   // laser flicker
   // counting flickers
-  if (laser.counter > 60 && laser.counter % 60 === 0) {
+  if (laser.counter > 20 && laser.counter % 20 === 0) {
     laser.flickerCounter += 1;
   }
   laser.counter += 1;
@@ -153,3 +156,4 @@ function debug(...text) {
     console.log(...text);
   }
 }
+

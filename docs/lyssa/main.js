@@ -94,10 +94,10 @@ function update() {
   } else if (laser.counter < 60 || laser.counter % 60 < 30) {  // flicker
     color("red");
     const c = rect(0, laser.height, 200, 2).isColliding.rect;
-    if (c.yellow && !laser.colliding) {  // +150 points for collision, only once
+    if (c.yellow && !laser.colliding) {  // +1500 points for collision, only once
       laser.colliding = true;
       play("coin");
-      addScore(150, player.vx+player.size, laser.height);
+      addScore(1500, player.vx+player.size, laser.height);
     }
   }
   
