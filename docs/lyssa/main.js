@@ -78,7 +78,7 @@ function update() {
 
   // laser flicker
   // counting flickers
-  if (laser.counter > 2 && laser.counter % 2 === 0) {
+  if (laser.counter > 60 && laser.counter % 60 === 0) {
     laser.flickerCounter += 1;
   }
   laser.counter += 1;

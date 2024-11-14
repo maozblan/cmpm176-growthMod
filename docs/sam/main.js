@@ -84,20 +84,21 @@ function update() {
   laser.counter += 1;
   
   // don't mind the magic numbers ty :')
+  // don't mind the magic numbers ty :')
   if (laser.flickerCounter > 3) {
-    color("cyan");
+    color("red");
     const c = rect(0, laser.height, 200, 2).isColliding.rect;
     if (c.yellow) {
       play("explosion");
       end();
     }
-  } else if (laser.counter < 60 || laser.counter % 60 < 30) {  // flicker
-    color("red");
+  } else if (laser.counter < 20 || laser.counter % 20 < 10) {  // flicker
+    color("cyan");
     const c = rect(0, laser.height, 200, 2).isColliding.rect;
     if (c.yellow && !laser.colliding) {  // +150 points for collision, only once
       laser.colliding = true;
       play("coin");
-      addScore(150, player.vx+player.size, laser.height);
+      addScore(300, player.vx+player.size, laser.height);
     }
   }
   
