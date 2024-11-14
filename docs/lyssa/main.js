@@ -1,13 +1,12 @@
 let debugMode = false;
 
-title = "GROWTH WITH LASERS";
+title = "GROWTH";
 
 description = `
 [Hold] Growth
 `;
 
 characters = [];
-
 
 options = {
   theme: "pixel",
@@ -53,12 +52,12 @@ function update() {
     ((input.isPressed ? 50 : 5) - player.size) *
     clamp(player.vx, 1, 999) *
     0.01;
-  player.vx += (15 / player.size - 1) * 0.04 * sqrt(difficulty);
+  player.vx += (15 / player.size - 1) * 0.02 * sqrt(difficulty);
   player.x += player.vx - scr;
   if (player.x + player.size / 2 < 1) {
     end();
   }
-  
+
   // draw player
   color("yellow");
   rect(0, floorY, player.x + player.size / 2, -player.size);
@@ -67,7 +66,7 @@ function update() {
   if (nextEnemyDist < 0) {
     debug("new enemy");
     // enemy size
-    let size = rnd() < 0.8 ? 5 : rnd(4) * rnd(4) + 3;
+    let size = rnd() < 0.8 ? 3 : rnd(5) * rnd(5) + 3;
 
     if (size < 7) {
       size = 3;
@@ -79,13 +78,13 @@ function update() {
 
   // laser flicker
   // counting flickers
-  if (laser.counter % 60 === 0) {
+  if (laser.counter > 60 && laser.counter % 60 === 0) {
     laser.flickerCounter += 1;
   }
   laser.counter += 1;
   
   // don't mind the magic numbers ty :')
-  if (laser.flickerCounter > 4) {
+  if (laser.flickerCounter > 3) {
     color("red");
     const c = rect(0, laser.height, 200, 2).isColliding.rect;
     if (c.yellow) {
@@ -96,14 +95,14 @@ function update() {
     color("cyan");
     const c = rect(0, laser.height, 200, 2).isColliding.rect;
     if (c.yellow && !laser.colliding) {  // +150 points for collision, only once
-      // laser.colliding = true;
+      laser.colliding = true;
       play("coin");
-      addScore(10, player.vx+player.size, laser.height);
+      addScore(150, player.vx+player.size, laser.height);
     }
   }
   
   // next laser
-  if (laser.flickerCounter > 5) {
+  if (laser.flickerCounter > 4) {
     laser.flickerCounter = 0;
     laser.counter = 0;
     laser.colliding = false;
@@ -139,8 +138,8 @@ function update() {
   });
 
   function laserHeight() {
-    let height = 12;
-    for (let i = 0; i < 3; ++i) {  // 4d12 anydice.com
+    let height = 0;
+    for (let i = 0; i < 4; ++i) {  // 4d12 anydice.com
       height += d12();
       debug('y', height);
     }
