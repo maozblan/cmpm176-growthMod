@@ -53,7 +53,7 @@ function update() {
     ((input.isPressed ? 50 : 5) - player.size) *
     clamp(player.vx, 1, 999) *
     0.01;
-  player.vx += (15 / player.size - 1) * 0.04 * sqrt(difficulty);
+  player.vx += (10 / player.size - 1) * 0.02 * sqrt(difficulty);
   player.x += player.vx - scr;
   if (player.x + player.size / 2 < 1) {
     end();
