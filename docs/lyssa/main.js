@@ -4,6 +4,7 @@ title = "GROWTH WITH LASERS ";
 
 description = `
 [Hold] Growth
+idk what to trust
 `;
 
 characters = [];

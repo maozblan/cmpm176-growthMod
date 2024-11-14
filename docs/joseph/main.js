@@ -4,6 +4,7 @@ title = "GROWTH WITH LASERS";
 
 description = `
 [Hold] Growth
+  no balance
 `;
 
 characters = [];
@@ -80,7 +81,7 @@ function update() {
 
   // laser flicker
   // counting flickers
-  if (laser.counter > 20 && laser.counter % 20 === 0) {
+  if (laser.counter > 60 && laser.counter % 60 === 0) {
     laser.flickerCounter += 1;
   }
   laser.counter += 1;
