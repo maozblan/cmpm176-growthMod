@@ -85,14 +85,14 @@ function update() {
   
   // don't mind the magic numbers ty :')
   if (laser.flickerCounter > 3) {
-    color("red");
+    color("cyan");
     const c = rect(0, laser.height, 200, 2).isColliding.rect;
     if (c.yellow) {
       play("explosion");
       end();
     }
   } else if (laser.counter < 60 || laser.counter % 60 < 30) {  // flicker
-    color("cyan");
+    color("red");
     const c = rect(0, laser.height, 200, 2).isColliding.rect;
     if (c.yellow && !laser.colliding) {  // +150 points for collision, only once
       laser.colliding = true;
