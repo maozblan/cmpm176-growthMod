@@ -1,6 +1,6 @@
 let debugMode = false;
 
-title = "GROWTH";
+title = "GROWTH WITH LASERS";
 
 description = `
 [Hold] Growth
