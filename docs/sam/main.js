@@ -69,8 +69,9 @@ function update() {
     if (laser.counter > 20){
 
     }
-    let size = rnd() < 0.8 ? 3 : rnd(5-(laser.height * 0.05)) * rnd(5-(laser.height * 0.05)) + 3;
-
+    // enemy balancing factor
+    let size = rnd() < 0.8 ? 3 : rnd(5-(laser.height * 0.013)) * rnd(5-(laser.height * 0.013)) + 3;
+    //let size = rnd() < 0.8 ? 3 : rnd(5) * rnd(5) + 3;
     if (size < 7) {
       size = 3;
     }

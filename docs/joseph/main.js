@@ -1,6 +1,6 @@
 let debugMode = false;
 
-title = "GROWTH WITH LASERS ";
+title = "GROWTH WITH LASERS";
 
 description = `
 [Hold] Growth
@@ -66,8 +66,10 @@ function update() {
   if (nextEnemyDist < 0) {
     debug("new enemy");
     // enemy size
-    let size = rnd() < 0.8 ? 3 : rnd(5-(laser.height * 0.025)) * rnd(5-(laser.height * 0.025)) + 3;
+    if (laser.counter > 20){
 
+    }
+    let size = rnd() < 0.8 ? 3 : rnd(5) * rnd(5) + 3;
     if (size < 7) {
       size = 3;
     }
@@ -78,26 +80,27 @@ function update() {
 
   // laser flicker
   // counting flickers
-  if (laser.counter > 60 && laser.counter % 60 === 0) {
+  if (laser.counter > 20 && laser.counter % 20 === 0) {
     laser.flickerCounter += 1;
   }
   laser.counter += 1;
   
   // don't mind the magic numbers ty :')
+  // don't mind the magic numbers ty :')
   if (laser.flickerCounter > 3) {
-    color("cyan");
+    color("red");
     const c = rect(0, laser.height, 200, 2).isColliding.rect;
     if (c.yellow) {
       play("explosion");
       end();
     }
   } else if (laser.counter < 60 || laser.counter % 60 < 30) {  // flicker
-    color("red");
+    color("cyan");
     const c = rect(0, laser.height, 200, 2).isColliding.rect;
-    if (c.yellow && !laser.colliding) {  // +1500 points for collision, only once
+    if (c.yellow && !laser.colliding) {  // +150 points for collision, only once
       laser.colliding = true;
       play("coin");
-      addScore(1500, player.vx+player.size, laser.height);
+      addScore(300, player.vx+player.size, laser.height);
     }
   }
   
@@ -152,3 +155,4 @@ function debug(...text) {
     console.log(...text);
   }
 }
+

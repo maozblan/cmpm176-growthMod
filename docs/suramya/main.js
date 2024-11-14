@@ -68,7 +68,8 @@ function update() {
   if (nextEnemyDist < 0) {
     debug("new enemy");
     // enemy size
-    let size = rnd() < 0.8 ? 5 : rnd(4) * rnd(4) + 3;
+    // enemy balancing factor
+    let size = rnd() < 0.8 ? 3 : rnd(5-(laser.height * 0.025)) * rnd(5-(laser.height * 0.025)) + 3;
 
     if (size < 7) {
       size = 3;
