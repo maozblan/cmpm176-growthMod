@@ -101,7 +101,7 @@ function update() {
       addScore(1500, player.vx+player.size, laser.height);
     }
   }
-  
+
   // next laser
   if (laser.flickerCounter > 4) {
     laser.flickerCounter = 0;

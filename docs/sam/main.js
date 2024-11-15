@@ -53,7 +53,7 @@ function update() {
     ((input.isPressed ? 50 : 5) - player.size) *
     clamp(player.vx, 1, 999) *
     0.01;
-  player.vx += (15 / player.size - 1) * 0.02 * sqrt(difficulty);
+  player.vx += (15 / player.size - 1) * 0.04 * sqrt(difficulty);
   player.x += player.vx - scr;
   if (player.x + player.size / 2 < 1) {
     end();
@@ -71,7 +71,7 @@ function update() {
 
     }
     // enemy balancing factor
-    let size = rnd() < 0.8 ? 3 : rnd(5-(laser.height * 0.013)) * rnd(5-(laser.height * 0.013)) + 3;
+    let size = rnd() < 0.8 ? 3 : rnd(5-(laser.height * 0.025)) * rnd(5-(laser.height * 0.025)) + 3;
     //let size = rnd() < 0.8 ? 3 : rnd(5) * rnd(5) + 3;
     if (size < 7) {
       size = 3;
@@ -101,9 +101,9 @@ function update() {
     color("cyan");
     const c = rect(0, laser.height, 200, 2).isColliding.rect;
     if (c.yellow && !laser.colliding) {  // +150 points for collision, only once
-      laser.colliding = true;
+      //laser.colliding = true;
       play("coin");
-      addScore(300, player.vx+player.size, laser.height);
+      addScore(150, player.vx+player.size, laser.height);
     }
   }
   
@@ -146,7 +146,7 @@ function update() {
   function laserHeight() {
     let height = 0;
     for (let i = 0; i < 4; ++i) {  // 4d12 anydice.com
-      height += d12();
+      height += d12() + 1 ;
       debug('y', height);
     }
     return height;

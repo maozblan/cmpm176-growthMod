@@ -70,7 +70,7 @@ function update() {
     if (laser.counter > 20){
 
     }
-    let size = rnd() < 0.8 ? 3 : rnd(5) * rnd(5) + 3;
+    let size = rnd() < 0.8 ? 3 : rnd(6) * rnd(6) + 3;
     if (size < 7) {
       size = 3;
     }
@@ -144,7 +144,7 @@ function update() {
   function laserHeight() {
     let height = 0;
     for (let i = 0; i < 4; ++i) {  // 4d12 anydice.com
-      height += d12();
+      height += d12() + 1;
       debug('y', height);
     }
     return height;
