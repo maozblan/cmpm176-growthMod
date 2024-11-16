@@ -70,10 +70,11 @@
       }
 
       function onIndexLoad() {
-        const base_s = localStorage.getItem("crisp-game-GROWTH%20WITH%20LASERS-1053304277") ?? 0;
-        const alt_s = localStorage.getItem("crisp-game-GROWTH%20WITH%20LASERS%20-2707079070") ?? 0;
-        const tough_s = localStorage.getItem("crisp-game-GROWTH%20WITH%20LASERS--931388258") ?? 0;
-        const bounds_s = localStorage.getItem("crisp-game-GROWTH%20WITH%20LASERS-555329193") ?? 0;
+        const zero_score = JSON.stringify({highScore: 0});
+        const base_s = JSON.parse(localStorage.getItem("crisp-game-GROWTH%20WITH%20LASERS-1053304277") ?? zero_score).highScore;
+        const alt_s = JSON.parse(localStorage.getItem("crisp-game-GROWTH%20WITH%20LASERS%20-2707079070") ?? zero_score).highScore;
+        const tough_s = JSON.parse(localStorage.getItem("crisp-game-GROWTH%20WITH%20LASERS--931388258") ?? zero_score).highScore;
+        const bounds_s = JSON.parse(localStorage.getItem("crisp-game-GROWTH%20WITH%20LASERS-555329193") ?? zero_score).highScore;
         document.body.classList.add('centered');
         document.body.innerHTML = `
           <h1>Greed</h1>
