@@ -28,6 +28,7 @@
     <style>
       .centered {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         height: 100vh;
@@ -36,9 +37,12 @@
         box-sizing: border-box;
       }
       .game-choice {
+        display: flex;
+        flex-direction: column;
         width: 200px;
         height: 100px;
         margin: 10px;
+        padding: 10px;
         background-color: #4c82af;
         color: white;
         display: flex;
@@ -47,6 +51,7 @@
         cursor: pointer;
         border-radius: 10px;
         text-align: center;
+        box-sizing: border-box;
       }
       .game-choice:hover {
         background-color: #134269;
@@ -94,7 +99,7 @@
           </div>
 
           <div class="game-choice" onclick="redirect('https://maozblan.github.io/cmpm176-growthMod/?joseph')">
-            <h1>No Bounds(GREED)</h1>
+            <h1>No Bounds (GREED)</h1>
             <p>enemies can get real big and the laser can go real low... how is your rng</p>
           </div>
         `;
