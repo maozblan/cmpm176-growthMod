@@ -70,6 +70,10 @@
       }
 
       function onIndexLoad() {
+        const base_s = localStorage.getItem("crisp-game-GROWTH%20WITH%20LASERS-1053304277") ?? 0;
+        const alt_s = localStorage.getItem("crisp-game-GROWTH%20WITH%20LASERS%20-2707079070") ?? 0;
+        const tough_s = localStorage.getItem("crisp-game-GROWTH%20WITH%20LASERS--931388258") ?? 0;
+        const bounds_s = localStorage.getItem("crisp-game-GROWTH%20WITH%20LASERS-555329193") ?? 0;
         document.body.classList.add('centered');
         document.body.innerHTML = `
           <h1>Greed</h1>
@@ -78,26 +82,31 @@
           <div class="game-choice" onclick="redirect('https://abagames.github.io/crisp-game-lib-11-games/?growth')">
             <h1>Original Game (GROWTH)</h1>
             <p>and this is where it all started</p>
+            <p>all credits to the original creator</p>
           </div>
 
           <div class="game-choice" onclick="redirect('https://maozblan.github.io/cmpm176-growthMod/?suramya')">
             <h1>Base Game (GREED)</h1>
             <p>growth but with lasers... the most balanced one</p>
+            <p>high score: ${base_s}</p>
           </div>
 
           <div class="game-choice" onclick="redirect('https://maozblan.github.io/cmpm176-growthMod/?lyssa')">
             <h1>Alternate Lasers (GREED)</h1>
             <p>so the laser broke... we don't reccommend this mode</p>
+            <p>high score: ${alt_s}</p>
           </div>
 
           <div class="game-choice" onclick="redirect('https://maozblan.github.io/cmpm176-growthMod/?sam')">
             <h1>Tough Mode (GREED)</h1>
             <p>more speed but even more points... can you hit 50k?</p>
+            <p>high score: ${tough_s}</p>
           </div>
 
           <div class="game-choice" onclick="redirect('https://maozblan.github.io/cmpm176-growthMod/?joseph')">
             <h1>No Bounds (GREED)</h1>
             <p>enemies can get real big and the laser can go real low... how is your rng</p>
+            <p>high score: ${bounds_s}</p>
           </div>
         `;
       }
