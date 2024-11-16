@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>crisp-game-lib</title>
+    <title>greed</title>
     <meta
       name="viewport"
       content="width=device-width, height=device-height,
@@ -25,9 +25,83 @@
     </script>
     <script src="https://unpkg.com/lodash.clonedeep@4.5.0/index.js"></script>
     <script src="bundle.js"></script>
+    <style>
+      .centered {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        text-align: center;
+        box-sizing: border-box;
+      }
+      .game-choice {
+        width: 200px;
+        height: 100px;
+        margin: 10px;
+        background-color: #4c82af;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 10px;
+        text-align: center;
+      }
+      .game-choice:hover {
+        background-color: #134269;
+      }
+    </style>
     <script>
-      addGameScript();
-      window.addEventListener("load", onLoad);
+      const url = window.location.href;
+      const parsedUrl = new URL(url);
+      if (parsedUrl.search && parsedUrl.search.slice(1).length > 0) {
+        addGameScript();
+        window.addEventListener("load", onLoad);
+      } else {
+        window.addEventListener("load", onIndexLoad);
+      }
+
+      function onIndexLoad() {
+        document.body.classList.add('centered');
+        document.body.innerHTML = `
+          <h1>Greed</h1>
+          <p>This is a mod of the crisp-game-lib game "GROWTH" made for a game systems class. Hope you all enjoy.</p>
+
+          <div class="game-choice" onclick="redirect('https://abagames.github.io/crisp-game-lib-11-games/?growth')">
+            <h1>Original Game (GROWTH)</h1>
+            <p>and this is where it all started</p>
+          </div>
+
+          <div class="game-choice" onclick="redirect('https://abagames.github.io/crisp-game-lib-11-games/?growth')">
+            <h1>Original Game (GROWTH)</h1>
+            <p>and this is where it all started</p>
+          </div>
+          
+          <div class="game-choice" onclick="redirect('https://maozblan.github.io/cmpm176-growthMod/?suramya')">
+            <h1>Base Game (GREED)</h1>
+            <p>growth but with lasers... the most balanced one</p>
+          </div>
+
+          <div class="game-choice" onclick="redirect('https://maozblan.github.io/cmpm176-growthMod/?lyssa')">
+            <h1>Alternate Lasers (GREED)</h1>
+            <p>so the laser broke... we don't reccommend this mode</p>
+          </div>
+
+          <div class="game-choice" onclick="redirect('https://maozblan.github.io/cmpm176-growthMod/?sam')">
+            <h1>Tough Mode (GREED)</h1>
+            <p>more speed but even more points... can you hit 50k?</p>
+          </div>
+
+          <div class="game-choice" onclick="redirect('https://maozblan.github.io/cmpm176-growthMod/?joseph')">
+            <h1>No Bounds(GREED)</h1>
+            <p>enemies can get real big and the laser can go real low... how is your rng</p>
+          </div>
+        `;
+      }
+      function redirect(url) {
+        window.location.href = url;
+      }
     </script>
   </head>
   <body style="background: #ddd"></body>
