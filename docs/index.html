@@ -26,10 +26,9 @@
     <script src="https://unpkg.com/lodash.clonedeep@4.5.0/index.js"></script>
     <script src="bundle.js"></script>
     <style>
-      .centered {
+      .body {
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
         height: 100vh;
         margin: 0;
@@ -75,7 +74,7 @@
         const alt_s = JSON.parse(localStorage.getItem("crisp-game-GROWTH%20WITH%20LASERS%20-2707079070") ?? zero_score).highScore;
         const tough_s = JSON.parse(localStorage.getItem("crisp-game-GROWTH%20WITH%20LASERS--931388258") ?? zero_score).highScore;
         const bounds_s = JSON.parse(localStorage.getItem("crisp-game-GROWTH%20WITH%20LASERS-555329193") ?? zero_score).highScore;
-        document.body.classList.add('centered');
+        document.body.classList.add('body');
         document.body.innerHTML = `
           <h1>Greed</h1>
           <p>This is a mod of the crisp-game-lib game "GROWTH" made for a game systems class. Hope you all enjoy.</p>
